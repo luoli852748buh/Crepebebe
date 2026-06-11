@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="ja" data-lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crepebebe | はじめての抱っこ準備に</title>
+<style>
+:root {
+  --cream:      #FAF7F2;
+  --bg-alt:     #F3EDE2;
+  --beige:      #E0D5C0;
+  --beige-deep: #C0A888;
+  --pk-pale:    #FCF0EB;
+  --pk-border:  #E8BFB2;
+  --pk-cta:     #D0876E;
+  --pk-dark:    #B86E58;
+  --brown:      #8A7060;
+  --brown-mid:  #6A5448;
+  --txt:        #3A2E28;
+  --txt-b:      #5C4C3C;
+  --txt-m:      #9A8A78;
+  --white:      #FFFFFF;
+  --sh-s: 0 2px 12px rgba(58,46,40,.09);
+  --sh-m: 0 4px 24px rgba(58,46,40,.13);
+  --r: 16px;
+  --font: 'Hiragino Kaku Gothic ProN','Hiragino Sans','Noto Sans TC','Noto Sans JP','Microsoft JhengHei',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font);background:var(--cream);color:var(--txt-b);font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;width:100%;height:auto}
+button{font-family:var(--font);cursor:pointer;-webkit-tap-highlight-color:transparent}
+
+/* i18n */
+[data-lang="ja"] .zh{display:none!important}
+[data-lang="zh"] .ja{display:none!important}
+
+/* ---- HEADER ---- */
+header{position:sticky;top:0;z-index:100;background:rgba(250,247,242,.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--beige);height:52px}
+.h-inner{max-width:860px;margin:0 auto;padding:0 16px;height:52px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.logo{font-size:17px;font-weight:800;color:var(--txt);letter-spacing:.04em;line-height:1;flex-shrink:0}
+.logo b{color:var(--pk-cta);font-weight:800}
+.h-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.lang-pill{display:flex;align-items:center;background:var(--bg-alt);border:1px solid var(--beige);border-radius:20px;padding:3px;gap:2px}
+.lang-btn{font-size:11px;font-weight:700;color:var(--txt-m);background:transparent;border:none;border-radius:14px;padding:5px 11px;transition:background .15s,color .15s;white-space:nowrap;min-height:32px}
+.lang-btn.on{background:var(--white);color:var(--txt);box-shadow:var(--sh-s)}
+.quiz-pill{font-size:12px;color:var(--brown);background:var(--pk-pale);border:1px solid var(--pk-border);border-radius:20px;padding:7px 13px;min-height:36px;white-space:nowrap;border:1px solid var(--pk-border)}
+
+/* ---- LAYOUT ---- */
+.sec{padding:48px 0}
+.sec.alt{background:var(--bg-alt)}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+.label{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brown);background:var(--bg-alt);border:1px solid var(--beige);border-radius:20px;padding:4px 12px;margin-bottom:12px}
+.label.pk{background:var(--pk-pale);border-color:var(--pk-border);color:var(--pk-cta)}
+h2{font-size:22px;font-weight:800;color:var(--txt);line-height:1.4;margin-bottom:10px}
+.lead{font-size:14px;color:var(--txt-m);line-height:1.9}
+
+/* ---- BUTTONS ---- */
+.btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;border-radius:30px;font-size:15px;font-weight:700;padding:14px 24px;border:none;letter-spacing:.03em;transition:background .15s,transform .1s;text-align:center}
+.btn:active{transform:scale(.97)}
+.btn-p{background:var(--pk-cta);color:var(--white);box-shadow:0 4px 16px rgba(208,135,110,.35)}
+.btn-p:active{background:var(--pk-dark)}
+.btn-s{background:transparent;color:var(--brown-mid);border:1.5px solid var(--beige-deep)}
+.btn-s:active{background:var(--bg-alt)}
+
+/* ---- HERO ---- */
+#hero{background:var(--cream);padding:0}
+.hero-img{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;background:var(--beige)}
+.hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(40,28,20,.15));pointer-events:none}
+.hero-badge{position:absolute;bottom:14px;left:14px;z-index:2;background:rgba(250,247,242,.93);backdrop-filter:blur(6px);border-radius:12px;padding:8px 14px;font-size:11px;font-weight:700;color:var(--txt);border:1px solid rgba(255,255,255,.5);box-shadow:var(--sh-s);line-height:1.45}
+.hero-badge small{display:block;font-size:9px;color:var(--pk-cta);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
+.hero-txt{padding:28px 20px 40px}
+h1{font-size:26px;font-weight:800;color:var(--txt);line-height:1.38;margin-bottom:10px}
+h1 .acc{color:var(--pk-cta)}
+.hero-sub{font-size:14px;color:var(--txt-m);line-height:1.85;margin-bottom:18px}
+.hero-body{font-size:14px;color:var(--txt-b);line-height:1.95;background:var(--bg-alt);border-left:3px solid var(--pk-border);border-radius:12px;padding:16px;margin-bottom:24px}
+.hero-body strong{color:var(--brown-mid)}
+.hero-btns{display:flex;flex-direction:column;gap:10px}
+.ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--beige-deep);font-size:12px}
+.ph-ico{font-size:44px;opacity:.5}
+
+/* ---- TRUST ---- */
+.trust{background:var(--bg-alt);border-top:1px solid var(--beige);border-bottom:1px solid var(--beige)}
+.trust-row{max-width:860px;margin:0 auto;padding:14px 16px;display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.t-item{display:flex;flex-direction:column;align-items:center;gap:4px}
+.t-ico{font-size:20px;line-height:1}
+.t-lbl{font-size:10px;font-weight:700;color:var(--txt);text-align:center;line-height:1.3}
+
+/* ---- QUIZ ---- */
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px}
+.chip{font-size:12px;color:var(--brown);background:var(--white);border:1px solid var(--beige);border-radius:20px;padding:6px 13px}
+.q-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px}
+.q-btn{background:var(--white);border:1.5px solid var(--beige);border-radius:16px;padding:14px 12px;text-align:left;font-size:13px;color:var(--txt-b);line-height:1.55;display:flex;align-items:flex-start;gap:9px;min-height:72px;transition:border-color .15s,background .15s}
+.q-btn:active{background:#FDF5F2;border-color:var(--pk-border)}
+.q-btn.on{border-color:var(--pk-cta);background:var(--pk-pale);box-shadow:0 0 0 3px rgba(208,135,110,.15)}
+.q-ltr{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;min-width:22px;border-radius:50%;background:var(--bg-alt);font-size:11px;font-weight:800;color:var(--brown);transition:background .15s,color .15s;flex-shrink:0;margin-top:1px}
+.q-btn.on .q-ltr{background:var(--pk-cta);color:var(--white)}
+#q-result{opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .35s ease,transform .35s ease}
+#q-result.show{opacity:1;transform:translateY(0);pointer-events:auto}
+.r-ph{text-align:center;padding:28px 16px;background:var(--bg-alt);border-radius:16px;border:1.5px dashed var(--beige);color:var(--txt-m);font-size:13px;line-height:1.7}
+.r-card{background:var(--white);border:1.5px solid var(--beige);border-radius:20px;padding:18px;box-shadow:var(--sh-m);display:grid;grid-template-columns:88px 1fr;gap:14px}
+.r-thumb{border-radius:12px;overflow:hidden;aspect-ratio:3/4;background:var(--beige)}
+.r-thumb img{width:100%;height:100%;object-fit:cover}
+.r-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;color:var(--pk-cta);background:var(--pk-pale);border:1px solid var(--pk-border);border-radius:20px;padding:3px 10px;margin-bottom:8px}
+#r-title{font-size:14px;font-weight:800;color:var(--txt);line-height:1.45;margin-bottom:8px}
+#r-body{font-size:12px;color:var(--txt-b);line-height:1.85;margin-bottom:14px;white-space:pre-line}
+#r-cta{font-size:13px;min-height:46px;padding:12px 20px}
+
+/* ---- SCENES ---- */
+.sc-outer{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;padding:16px 20px 20px}
+.sc-outer::-webkit-scrollbar{height:3px}
+.sc-outer::-webkit-scrollbar-thumb{background:var(--beige);border-radius:3px}
+.sc-track{display:flex;gap:12px;width:max-content}
+.sc-card{width:190px;flex-shrink:0;background:var(--white);border-radius:16px;overflow:hidden;box-shadow:var(--sh-s);border:1px solid var(--bg-alt)}
+.sc-img{width:100%;aspect-ratio:4/3;overflow:hidden;background:var(--beige);display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--beige-deep)}
+.sc-img img{width:100%;height:100%;object-fit:cover}
+.sc-body{padding:12px 13px 16px}
+.sc-no{font-size:9.5px;font-weight:800;letter-spacing:.12em;color:var(--pk-cta);margin-bottom:3px}
+.sc-ttl{font-size:13px;font-weight:700;color:var(--txt);line-height:1.4;margin-bottom:5px}
+.sc-txt{font-size:12px;color:var(--txt-m);line-height:1.7}
+
+/* ---- FEATURES ---- */
+.feat-photo{width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:20px;background:var(--beige);box-shadow:var(--sh-m);margin-bottom:22px}
+.feat-photo img{width:100%;height:100%;object-fit:cover}
+.feat-list{display:flex;flex-direction:column;gap:12px}
+.feat-item{background:var(--white);border:1px solid var(--beige);border-radius:14px;padding:15px;box-shadow:0 1px 8px rgba(58,46,40,.07);display:flex;gap:12px;align-items:flex-start}
+.feat-ico{font-size:20px;width:36px;height:36px;min-width:36px;display:flex;align-items:center;justify-content:center;background:var(--bg-alt);border-radius:10px}
+.feat-item h3{font-size:13.5px;font-weight:700;color:var(--txt);margin-bottom:4px;line-height:1.4}
+.feat-item p{font-size:12px;color:var(--txt-m);line-height:1.7}
+.feat-note{margin-top:18px;padding:14px 16px;background:var(--bg-alt);border-left:3px solid var(--beige-deep);border-radius:12px;font-size:12px;color:var(--txt-m);line-height:1.85}
+
+/* ---- TABLE ---- */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:22px;border-radius:16px;box-shadow:var(--sh-s);border:1px solid var(--beige)}
+table{width:100%;min-width:480px;border-collapse:collapse;font-size:12px}
+th,td{padding:11px 12px;vertical-align:middle;text-align:center;border-bottom:1px solid var(--bg-alt)}
+td:first-child,th:first-child{text-align:left;font-weight:700;color:var(--txt);white-space:nowrap;background:var(--bg-alt);border-right:1px solid var(--beige)}
+thead th{background:var(--bg-alt);font-size:11px;color:var(--txt-m);font-weight:700}
+thead th.hi{background:var(--pk-border);color:var(--white);font-weight:800;font-size:12px}
+td.hi{background:var(--pk-pale);font-weight:600}
+tr:last-child td{border-bottom:none}
+.t-ch{font-size:18px;display:block;margin:0 auto 3px}
+
+/* ---- RECO ---- */
+.reco-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+.reco-card{background:var(--white);border:1px solid var(--beige);border-radius:14px;padding:16px 12px;box-shadow:0 1px 8px rgba(58,46,40,.07);text-align:center}
+.reco-ico{font-size:24px;margin-bottom:8px;display:block}
+.reco-card p{font-size:12px;color:var(--txt-b);line-height:1.65;font-weight:500}
+
+/* ---- DISTINCTION ---- */
+.dist-photo{width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:20px;background:var(--beige);box-shadow:var(--sh-m);margin-bottom:24px}
+.dist-photo img{width:100%;height:100%;object-fit:cover}
+#distinction h2{font-size:21px;font-weight:800;color:var(--txt);line-height:1.45;margin-bottom:14px}
+#distinction p{font-size:14px;color:var(--txt-b);line-height:1.95;margin-bottom:12px}
+.dist-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.d-chip{font-size:12px;background:var(--white);border:1px solid var(--beige);border-radius:20px;padding:5px 12px;color:var(--txt-b)}
+
+/* ---- FINAL CTA ---- */
+#final-cta{text-align:center}
+.cta-photo{width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:20px;background:var(--beige);box-shadow:var(--sh-m);margin-bottom:26px}
+.cta-photo img{width:100%;height:100%;object-fit:cover}
+.cta-h{font-size:22px;font-weight:800;color:var(--txt);line-height:1.45;margin-bottom:10px}
+.cta-note{font-size:12px;color:var(--txt-m);line-height:1.75;margin-bottom:22px}
+.cta-btns{display:flex;flex-direction:column;gap:10px}
+
+/* ---- FOOTER ---- */
+footer{background:var(--txt);color:rgba(255,255,255,.5);text-align:center;padding:28px 20px;font-size:12px}
+.f-logo{color:#fff;font-weight:800;font-size:16px;margin-bottom:6px}
+.f-logo b{color:var(--pk-border)}
+
+/* ---- PC 640px+ ---- */
+@media(min-width:640px){
+  .sec{padding:68px 0}
+  h2{font-size:26px}
+  .hero-inner{max-width:860px;margin:0 auto;padding:60px 32px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .hero-img{border-radius:22px;aspect-ratio:4/5}
+  .hero-txt{padding:0}
+  h1{font-size:34px}
+  .hero-btns{flex-direction:row;gap:12px}
+  .btn{width:auto;min-width:180px}
+  #r-cta{width:auto}
+  .feat-layout{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+  .feat-photo{aspect-ratio:3/4;margin-bottom:0}
+  .dist-layout{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+  .dist-photo{aspect-ratio:3/4;margin-bottom:0}
+  .reco-grid{grid-template-columns:repeat(3,1fr)}
+  .sc-card{width:220px}
+  .cta-btns{flex-direction:row;justify-content:center;gap:12px}
+  .cta-photo{aspect-ratio:16/9}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="h-inner">
+    <div class="logo">Crepe<b>bebe</b></div>
+    <div class="h-right">
+      <button class="quiz-pill" onclick="scrollTo('quiz')">
+        <span class="ja">🌸 診断</span>
+        <span class="zh">🌸 診斷</span>
+      </button>
+      <div class="lang-pill" role="group" aria-label="言語 / 語言">
+        <button class="lang-btn on" id="btn-ja" onclick="setLang('ja')" aria-pressed="true">日本語</button>
+        <button class="lang-btn"    id="btn-zh" onclick="setLang('zh')" aria-pressed="false">繁體中文</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+
+    <div class="hero-img">
+      <img src="img-hero.png"
+           alt="ママがCrepebebeで新生児をやさしく抱っこしている / 媽媽用Crepebebe輕柔抱著新生兒"
+           onerror="this.style.display='none';this.parentElement.querySelector('.ph').style.display='flex'">
+      <div class="ph" style="display:none"><div class="ph-ico">🤱</div><span>img-hero.png</span></div>
+      <div class="hero-badge">
+        <span class="ja">はじめての抱っこに寄り添う</span>
+        <span class="zh">陪伴第一次抱抱</span>
+        <small>First Hug Preparation</small>
+      </div>
+    </div>
+
+    <div class="hero-txt">
+      <div class="label pk">❀ First Hug Preparation</div>
+
+      <h1 class="ja">生まれた日から、<br>はじめての抱っこを<br><span class="acc">少し安心に。</span></h1>
+      <h1 class="zh">從寶寶誕生的那天，<br>讓第一次抱抱<br><span class="acc">多一份從容。</span></h1>
+
+      <p class="hero-sub ja">首すわり前の小さな赤ちゃんをやさしく包み、<br>ママ・パパ・家族みんなの抱っこ時間を心地よく。</p>
+      <p class="hero-sub zh">輕柔包覆頸部尚未穩定的新生兒，<br>讓媽媽、爸爸與全家人的抱抱時光更加舒心。</p>
+
+      <div class="hero-body ja">
+        ベビーベッド、哺乳瓶、肌着、ガーゼ。出産準備リストには、たくさんのものがあります。<br><br>
+        でも、赤ちゃんが生まれたその日から始まる<br>
+        <strong>「はじめての抱っこ」の準備はできていますか？</strong><br><br>
+        Crepebebeは、産院での初めての抱っこ、退院時、月子中心での面会、そして家に帰ってからも――首すわり前の小さな赤ちゃんをやさしく包み、新手ママ・パパの抱っこ時間に寄り添います。
+      </div>
+      <div class="hero-body zh">
+        嬰兒床、奶瓶、肌衣、紗布巾……待產包清單上，有好多要準備的東西。<br><br>
+        但從寶寶出生那天就開始的<br>
+        <strong>「第一次抱抱」，你準備好了嗎？</strong><br><br>
+        Crepebebe 陪伴你從醫院的初抱、出院、月子中心探視，到回家後每一次抱抱時光，輕柔包覆頸部尚未穩定的小寶寶，陪伴新手爸媽的每一個瞬間。
+      </div>
+
+      <div class="hero-btns">
+        <button class="btn btn-p" onclick="scrollTo('final-cta')">
+          <span class="ja">Crepebebeを見る</span>
+          <span class="zh">查看 Crepebebe</span>
+        </button>
+        <button class="btn btn-s" onclick="scrollTo('features')">
+          <span class="ja">抱っこ準備のポイントを見る</span>
+          <span class="zh">了解抱抱準備重點</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- TRUST STRIP -->
+<div class="trust">
+  <div class="trust-row">
+    <div class="t-item">
+      <div class="t-ico">🏥</div>
+      <div class="t-lbl ja">産院から<br>使えるイメージ</div>
+      <div class="t-lbl zh">從醫院<br>就能使用</div>
+    </div>
+    <div class="t-item">
+      <div class="t-ico">👨‍👩‍👧</div>
+      <div class="t-lbl ja">家族みんなの<br>抱っこに</div>
+      <div class="t-lbl zh">全家人的<br>抱抱時光</div>
+    </div>
+    <div class="t-item">
+      <div class="t-ico">🌸</div>
+      <div class="t-lbl ja">首すわり前<br>から対応</div>
+      <div class="t-lbl zh">頸部穩定前<br>就能使用</div>
+    </div>
+    <div class="t-item">
+      <div class="t-ico">👜</div>
+      <div class="t-lbl ja">待產包に<br>入れたい</div>
+      <div class="t-lbl zh">待產包<br>必備好物</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- QUIZ -->
+<section class="sec" id="quiz">
+  <div class="wrap">
+    <div class="label pk ja">❀ はじめての抱っこ準備診断</div>
+    <div class="label pk zh">❀ 第一次抱抱準備診斷</div>
+
+    <h2 class="ja">いちばん気になることは？</h2>
+    <h2 class="zh">你最在意的是什麼？</h2>
+
+    <p class="lead ja" style="margin-bottom:20px">赤ちゃんが生まれたその日から、抱っこの時間は始まります。首すわり前の小さな赤ちゃんを抱くのは、少し緊張するもの。今いちばん気になることを選んでください。</p>
+    <p class="lead zh" style="margin-bottom:20px">從寶寶誕生的那一天，抱抱的時光就開始了。抱起頸部尚未穩定的小寶寶，難免有一點緊張。請選擇你現在最在意的事情。</p>
+
+    <div class="chips">
+      <span class="chip ja">💭 首すわり前が少し怖い</span>
+      <span class="chip ja">💭 夫にも抱かせたい</span>
+      <span class="chip ja">💭 待產包に何を入れる？</span>
+      <span class="chip ja">💭 初抱っこ写真も残したい</span>
+      <span class="chip zh">💭 頸部未穩定時有點怕</span>
+      <span class="chip zh">💭 希望老公也能抱抱</span>
+      <span class="chip zh">💭 待產包放什麼好？</span>
+      <span class="chip zh">💭 想留下第一次抱抱照片</span>
+    </div>
+
+    <div class="q-grid" role="group">
+      <button class="q-btn" data-t="neck" onclick="pickQ(this)" aria-pressed="false">
+        <span class="q-ltr">A</span>
+        <span>
+          <span class="ja">首すわり前の赤ちゃんを抱くのが少し怖い</span>
+          <span class="zh">抱起頸部尚未穩定的寶寶，有點緊張</span>
+        </span>
+      </button>
+      <button class="q-btn" data-t="family" onclick="pickQ(this)" aria-pressed="false">
+        <span class="q-ltr">B</span>
+        <span>
+          <span class="ja">パパや祖父母にも落ち着いて抱っこしてほしい</span>
+          <span class="zh">希望爸爸和爺爺奶奶也能從容抱抱</span>
+        </span>
+      </button>
+      <button class="q-btn" data-t="bag" onclick="pickQ(this)" aria-pressed="false">
+        <span class="q-ltr">C</span>
+        <span>
+          <span class="ja">待產包に入れるべきものを迷っている</span>
+          <span class="zh">猶豫待產包裡該放哪些東西</span>
+        </span>
+      </button>
+      <button class="q-btn" data-t="photo" onclick="pickQ(this)" aria-pressed="false">
+        <span class="q-ltr">D</span>
+        <span>
+          <span class="ja">はじめての抱っこ写真もかわいく残したい</span>
+          <span class="zh">想留下第一次抱抱的可愛照片</span>
+        </span>
+      </button>
+    </div>
+
+    <div id="q-result" role="region" aria-live="polite">
+      <div id="r-ph" class="r-ph">
+        <span class="ja">🌸 気になることを選ぶと、あなたに合った情報が表示されます</span>
+        <span class="zh">🌸 選擇你在意的事，就會顯示適合你的資訊</span>
+      </div>
+      <div id="r-card" class="r-card" style="display:none">
+        <div class="r-thumb">
+          <img id="r-img" src="" alt=""
+               onerror="this.style.display='none';this.parentElement.querySelector('.ph').style.display='flex'">
+          <div class="ph" style="display:none;height:100%">🤱</div>
+        </div>
+        <div>
+          <span class="r-tag">
+            <span class="ja">あなたのタイプ</span>
+            <span class="zh">你的類型</span>
+          </span>
+          <div id="r-title"></div>
+          <div id="r-body"></div>
+          <button class="btn btn-p" id="r-cta" onclick="doCTA()"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SCENES -->
+<section class="sec alt" id="scenes">
+  <div class="wrap">
+    <div class="label ja">🌿 使用シーン</div>
+    <div class="label zh">🌿 使用場景</div>
+    <h2 class="ja">Crepebebeが活躍する<br>はじめての抱っこシーン</h2>
+    <h2 class="zh">Crepebebe 陪伴的<br>第一次抱抱場景</h2>
+  </div>
+  <div class="sc-outer" tabindex="0">
+    <div class="sc-track">
+
+      <div class="sc-card">
+        <div class="sc-img">
+          <img src="img-hospital.jpg" alt="産院での初抱っこ / 在醫院的第一次抱抱"
+               onerror="this.style.display='none';this.parentElement.textContent='🏥'">
+        </div>
+        <div class="sc-body">
+          <div class="sc-no">SCENE 01</div>
+          <div class="sc-ttl ja">産院ではじめて抱く時</div>
+          <div class="sc-ttl zh">在醫院第一次抱起寶寶</div>
+          <p class="sc-txt ja">赤ちゃんが生まれたその日から、抱っこの時間は始まります。小さな命をやさしく包んで、初めての抱っこに寄り添うイメージ。</p>
+          <p class="sc-txt zh">從寶寶出生的那天，抱抱的時光就開始了。輕柔包覆小小的寶寶，陪伴第一次抱抱的珍貴時刻。</p>
+        </div>
+      </div>
+
+      <div class="sc-card">
+        <div class="sc-img">
+          <img src="img-papa.webp" alt="パパの初抱っこ / 爸爸第一次抱起寶寶"
+               onerror="this.style.display='none';this.parentElement.textContent='👨'">
+        </div>
+        <div class="sc-body">
+          <div class="sc-no">SCENE 02</div>
+          <div class="sc-ttl ja">パパが初めて抱っこする時</div>
+          <div class="sc-ttl zh">爸爸第一次抱起寶寶</div>
+          <p class="sc-txt ja">「抱っこしたいけど少し緊張する」そんなパパのはじめての抱っこ時間にも、やさしく寄り添います。</p>
+          <p class="sc-txt zh">「想抱抱，但有點緊張⋯⋯」Crepebebe 陪伴爸爸第一次抱抱的緊張時刻。</p>
+        </div>
+      </div>
+
+      <div class="sc-card">
+        <div class="sc-img">
+          <img src="img-grandpa.jpg" alt="祖父母との初対面 / 與爺爺奶奶的第一次見面"
+               onerror="this.style.display='none';this.parentElement.textContent='👴'">
+        </div>
+        <div class="sc-body">
+          <div class="sc-no">SCENE 03</div>
+          <div class="sc-ttl ja">祖父母との初めての対面</div>
+          <div class="sc-ttl zh">與爺爺奶奶的第一次見面</div>
+          <p class="sc-txt ja">家族が赤ちゃんに初めて会う日。みんなの初めての抱っこ時間にも、Crepebebeは自然になじみます。</p>
+          <p class="sc-txt zh">家人第一次見到寶寶的日子。Crepebebe 自然融入這份珍貴的初次抱抱時光。</p>
+        </div>
+      </div>
+
+      <div class="sc-card">
+        <div class="sc-img">
+          <img src="img-friends.png" alt="友達の訪問 / 朋友來家裡探望"
+               onerror="this.style.display='none';this.parentElement.textContent='👭'">
+        </div>
+        <div class="sc-body">
+          <div class="sc-no">SCENE 04</div>
+          <div class="sc-ttl ja">友達が初めて家に来た時</div>
+          <div class="sc-ttl zh">朋友第一次來家裡探望</div>
+          <p class="sc-txt ja">Crepebebeがあると、大切な人との抱っこ時間もやさしく迎えやすくなります。</p>
+          <p class="sc-txt zh">有了 Crepebebe，和重要的人共度抱抱時光也能更從容。</p>
+        </div>
+      </div>
+
+      <div class="sc-card">
+        <div class="sc-img">
+          <img src="img-bag.png" alt="待產包の準備 / 準備待產包"
+               onerror="this.style.display='none';this.parentElement.textContent='👜'">
+        </div>
+        <div class="sc-body">
+          <div class="sc-no">SCENE 05</div>
+          <div class="sc-ttl ja">待產包に入れて準備する時</div>
+          <div class="sc-ttl zh">放入待產包提前準備</div>
+          <p class="sc-txt ja">出産前に準備しておくことで、生まれた日からの抱っこ時間をイメージしやすくなります。</p>
+          <p class="sc-txt zh">提前準備，讓你從寶寶出生的那天就能從容迎接每一次抱抱。</p>
+        </div>
+      </div>
+
+      <div class="sc-card">
+        <div class="sc-img">
+          <img src="img-family.jpg" alt="はじめての抱っこ写真 / 第一次抱抱的珍貴照片"
+               onerror="this.style.display='none';this.parentElement.textContent='📷'">
+        </div>
+        <div class="sc-body">
+          <div class="sc-no">SCENE 06</div>
+          <div class="sc-ttl ja">はじめての抱っこ写真</div>
+          <div class="sc-ttl zh">第一次抱抱的珍貴照片</div>
+          <p class="sc-txt ja">生まれた日、退院の日、家族が抱っこした日の写真に。自然な家族の記録として。</p>
+          <p class="sc-txt zh">出生那天、出院那天、家人抱抱那天——留下自然而珍貴的家族紀錄。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- FEATURES -->
+<section class="sec" id="features">
+  <div class="wrap">
+    <div class="label ja">✦ Crepebebeの特徴</div>
+    <div class="label zh">✦ Crepebebe 的特色</div>
+    <h2 class="ja">首すわり前の抱っこ時間に<br>寄り添う出産準備アイテム</h2>
+    <h2 class="zh">陪伴頸部穩定前抱抱時光的<br>生產準備好物</h2>
+
+    <div class="feat-layout" style="margin-top:22px">
+      <div class="feat-photo">
+        <img src="img-closeup.webp" alt="Crepebebeの素材感と赤ちゃんをやさしく包む手元 / Crepebebe的質感與輕柔包覆寶寶的手部特寫"
+             onerror="this.style.display='none';this.parentElement.querySelector('.ph').style.display='flex'">
+        <div class="ph" style="display:none"><div class="ph-ico">🧸</div><span>img-closeup.webp</span></div>
+      </div>
+      <div>
+        <div class="feat-list">
+          <div class="feat-item">
+            <div class="feat-ico">🌸</div>
+            <div>
+              <h3 class="ja">首すわり前の赤ちゃんをやさしく包む</h3>
+              <h3 class="zh">輕柔包覆頸部尚未穩定的寶寶</h3>
+              <p class="ja">まだ首が安定していない時期の赤ちゃんを、ふんわり包むイメージ。</p>
+              <p class="zh">溫柔包覆頸部還不穩定的寶寶，帶來舒適的包覆感。</p>
+            </div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-ico">💛</div>
+            <div>
+              <h3 class="ja">はじめての抱っこの緊張を少しやわらげる</h3>
+              <h3 class="zh">稍微緩解第一次抱抱的緊張感</h3>
+              <p class="ja">初めて赤ちゃんを抱くママ・パパの気持ちに寄り添う。</p>
+              <p class="zh">陪伴第一次抱起寶寶的媽媽、爸爸，讓緊張稍稍放鬆。</p>
+            </div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-ico">🏥</div>
+            <div>
+              <h3 class="ja">産院・退院時から使うイメージが湧きやすい</h3>
+              <h3 class="zh">從醫院、出院就能開始使用</h3>
+              <p class="ja">家に帰ってからだけでなく、生まれた日からの抱っこ時間にも。</p>
+              <p class="zh">不只是回家之後，從寶寶出生的那天起就能陪伴每一次抱抱。</p>
+            </div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-ico">👨‍👩‍👧</div>
+            <div>
+              <h3 class="ja">家族みんなの抱っこ時間に使いやすい</h3>
+              <h3 class="zh">全家人抱抱時都能輕鬆使用</h3>
+              <p class="ja">パパや祖父母が抱っこする場面にも自然に使える。</p>
+              <p class="zh">爸爸、爺爺奶奶抱抱時，也能自然融入。</p>
+            </div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-ico">📷</div>
+            <div>
+              <h3 class="ja">抱っこ写真にも残したくなるやさしいデザイン</h3>
+              <h3 class="zh">想留在抱抱照片裡的溫柔設計</h3>
+              <p class="ja">実用性だけでなく、赤ちゃんとの思い出にもなじむ。</p>
+              <p class="zh">不只實用，更能自然融入與寶寶的珍貴回憶之中。</p>
+            </div>
+          </div>
+        </div>
+        <div class="feat-note ja">Crepebebeは、安全を保証する道具ではありません。でも、首すわり前の小さな赤ちゃんを抱く時の緊張に寄り添い、生まれた日からの抱っこ時間を、少し心地よくしてくれる出産準備アイテムです。</div>
+        <div class="feat-note zh">Crepebebe 並非保證安全的工具。但它能陪伴你抱起頸部尚未穩定的小寶寶時，讓那份緊張稍稍化解，是一款讓從出生那天起的每一次抱抱都能多一份從容的生產準備好物。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- COMPARISON -->
+<section class="sec alt" id="comparison">
+  <div class="wrap">
+    <div class="label ja">🌿 使い分けの考え方</div>
+    <div class="label zh">🌿 如何區分使用</div>
+    <h2 class="ja">どんな場面で使う？<br>抱っこ準備の考え方</h2>
+    <h2 class="zh">在什麼場合使用？<br>抱抱準備的思考方式</h2>
+    <div class="tbl-wrap" tabindex="0">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th class="hi"><span class="t-ch">🌸</span>Crepebebe</th>
+            <th><span class="t-ch">🧣</span><span class="ja">おくるみ</span><span class="zh">包巾</span></th>
+            <th><span class="t-ch">🎽</span><span class="ja">抱っこ紐</span><span class="zh">揹巾</span></th>
+            <th><span class="t-ch">🛏</span><span class="ja">ベビーベッド</span><span class="zh">嬰兒床</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="ja">向いている時間</span><span class="zh">適合時機</span></td>
+            <td class="hi"><span class="ja">産院・退院・家族の抱っこ</span><span class="zh">醫院、出院、家人抱抱</span></td>
+            <td><span class="ja">包む・温度調整</span><span class="zh">包覆、溫度調節</span></td>
+            <td><span class="ja">外出・長い抱っこ</span><span class="zh">外出、長時間抱抱</span></td>
+            <td><span class="ja">睡眠時間</span><span class="zh">睡眠時間</span></td>
+          </tr>
+          <tr>
+            <td><span class="ja">首すわり前との相性</span><span class="zh">頸部穩定前適合度</span></td>
+            <td class="hi">◎</td>
+            <td>○</td>
+            <td><span class="ja">商品による</span><span class="zh">依商品而定</span></td>
+            <td>◎</td>
+          </tr>
+          <tr>
+            <td><span class="ja">こんな人に</span><span class="zh">適合這樣的人</span></td>
+            <td class="hi"><span class="ja">初めての抱っこを少し安心にしたい</span><span class="zh">想讓第一次抱抱更從容</span></td>
+            <td><span class="ja">汎用的な布を準備したい</span><span class="zh">想準備多用途布品</span></td>
+            <td><span class="ja">外出時の抱っこを考えたい</span><span class="zh">考慮外出時的抱抱</span></td>
+            <td><span class="ja">睡眠環境を整えたい</span><span class="zh">整頓睡眠環境</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOR WHO -->
+<section class="sec" id="for-who">
+  <div class="wrap">
+    <div class="label ja">💛 こんな方に</div>
+    <div class="label zh">💛 適合這樣的你</div>
+    <h2 class="ja">こんな方におすすめ</h2>
+    <h2 class="zh">推薦給這樣的你</h2>
+    <div class="reco-grid">
+      <div class="reco-card">
+        <span class="reco-ico">🏥</span>
+        <p class="ja">妊娠後期で<br>待產包を準備している</p>
+        <p class="zh">懷孕後期，<br>正在準備待產包</p>
+      </div>
+      <div class="reco-card">
+        <span class="reco-ico">🌸</span>
+        <p class="ja">首すわり前の<br>抱っこが少し不安</p>
+        <p class="zh">對抱起頸部未穩定的<br>寶寶感到不安</p>
+      </div>
+      <div class="reco-card">
+        <span class="reco-ico">👨‍👩‍👧</span>
+        <p class="ja">パパや祖父母にも<br>落ち着いて抱っこしてほしい</p>
+        <p class="zh">希望爸爸和爺爺奶奶<br>也能從容抱抱</p>
+      </div>
+      <div class="reco-card">
+        <span class="reco-ico">🎀</span>
+        <p class="ja">産院・退院から<br>使える準備品を探している</p>
+        <p class="zh">在尋找從醫院<br>就能使用的好物</p>
+      </div>
+      <div class="reco-card">
+        <span class="reco-ico">🧣</span>
+        <p class="ja">おくるみだけで<br>十分か迷っている</p>
+        <p class="zh">猶豫只用包巾<br>是否就夠了</p>
+      </div>
+      <div class="reco-card">
+        <span class="reco-ico">📷</span>
+        <p class="ja">初抱っこ写真も<br>かわいく残したい</p>
+        <p class="zh">想留下第一次抱抱<br>的可愛照片</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- DISTINCTION -->
+<section class="sec alt" id="distinction">
+  <div class="wrap">
+    <div class="dist-layout">
+      <div class="dist-photo">
+        <img src="img-family.jpg" alt="Crepebebeで包まれた赤ちゃんを抱くママ / 媽媽抱著Crepebebe包覆的寶寶"
+             onerror="this.style.display='none';this.parentElement.querySelector('.ph').style.display='flex'">
+        <div class="ph" style="display:none"><div class="ph-ico">👨‍👩‍👧</div><span>img-family.jpg</span></div>
+      </div>
+      <div>
+        <div class="label ja">🛏 役割の整理</div>
+        <div class="label zh">🛏 角色的定位</div>
+        <h2 class="ja">眠る場所はベビーベッド。<br>抱っこ時間には Crepebebe。</h2>
+        <h2 class="zh">睡覺的地方是嬰兒床。<br>抱抱的時光，交給 Crepebebe。</h2>
+        <p class="ja">眠る時間はベビーベッドで。でも、赤ちゃんが生まれたその日から、ママ・パパ・家族の抱っこ時間も始まります。</p>
+        <p class="zh">睡覺的時間交給嬰兒床。但從寶寶出生的那一天起，媽媽、爸爸和家人的抱抱時光也同時開始了。</p>
+        <p class="ja">産院で初めて抱く時。退院時。月子中心での面会。家に帰ってから授乳後にそっと抱く時。</p>
+        <p class="zh">在醫院第一次抱起的時刻。出院時。月子中心的探視。回家後餵完奶輕輕抱著的每一次。</p>
+        <p class="ja">Crepebebeは、首すわり前の小さな赤ちゃんをやさしく包み、生まれた日からの抱っこ時間に寄り添う、出産準備アイテムです。</p>
+        <p class="zh">Crepebebe 輕柔包覆頸部尚未穩定的小寶寶，陪伴從出生那天起的每一次抱抱，是一款溫柔的生產準備好物。</p>
+        <div class="dist-chips">
+          <span class="d-chip ja">🏥 産院でも</span>
+          <span class="d-chip ja">🏠 退院時も</span>
+          <span class="d-chip ja">👨 パパの抱っこにも</span>
+          <span class="d-chip ja">👴 祖父母との面会にも</span>
+          <span class="d-chip zh">🏥 在醫院</span>
+          <span class="d-chip zh">🏠 出院時</span>
+          <span class="d-chip zh">👨 爸爸抱抱時</span>
+          <span class="d-chip zh">👴 家人探視時</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FINAL CTA -->
+<section class="sec" id="final-cta" style="text-align:center">
+  <div class="wrap">
+    <div class="cta-photo">
+      <img src="img-hero.png" alt="Crepebebeで包まれた赤ちゃんを抱くママ / 媽媽抱著Crepebebe包覆的寶寶"
+           onerror="this.style.display='none';this.parentElement.querySelector('.ph').style.display='flex'">
+      <div class="ph" style="display:none;height:100%"><span style="font-size:44px">🤱</span></div>
+    </div>
+    <div class="label pk ja" style="margin:0 auto 12px">❀ 出産準備を始める</div>
+    <div class="label pk zh" style="margin:0 auto 12px">❀ 開始準備迎接寶寶</div>
+    <h2 class="cta-h ja">生まれた日から始まる、<br>はじめての抱っこ準備を。</h2>
+    <h2 class="cta-h zh">從寶寶誕生的那一天起，<br>開始準備第一次抱抱吧。</h2>
+    <p class="cta-note ja">妊娠後期〜新生児期、生後3・4か月ごろまでの首すわり前の赤ちゃんにおすすめ</p>
+    <p class="cta-note zh">推薦給懷孕後期至新生兒期，約生後3〜4個月頸部穩定前的寶寶家庭</p>
+    <div class="cta-btns">
+      <button class="btn btn-p">
+        <span class="ja">Crepebebeの商品を見る</span>
+        <span class="zh">查看 Crepebebe 商品</span>
+      </button>
+      <button class="btn btn-s" onclick="scrollTo('features')">
+        <span class="ja">抱っこ準備のポイントをもう一度見る</span>
+        <span class="zh">再次確認抱抱準備重點</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">Crepe<b>bebe</b></div>
+  <p class="ja">首すわり前の抱っこ時間に寄り添う出産準備アイテム</p>
+  <p class="zh">陪伴頸部穩定前抱抱時光的生產準備好物</p>
+  <p style="margin-top:10px;font-size:10px">© 2025 Crepebebe. All rights reserved.</p>
+</footer>
+
+
+<script>
+/* 言語切り替え */
+let lang='ja';
+function setLang(l){
+  lang=l;
+  document.documentElement.setAttribute('data-lang',l);
+  document.documentElement.setAttribute('lang',l==='zh'?'zh-TW':'ja');
+  document.getElementById('btn-ja').classList.toggle('on',l==='ja');
+  document.getElementById('btn-zh').classList.toggle('on',l==='zh');
+  document.getElementById('btn-ja').setAttribute('aria-pressed',l==='ja');
+  document.getElementById('btn-zh').setAttribute('aria-pressed',l==='zh');
+  const active=document.querySelector('.q-btn.on');
+  if(active&&document.getElementById('r-card').style.display!=='none') renderQ(active.dataset.t);
+}
+
+/* スムーススクロール */
+function scrollTo(id){
+  const el=document.getElementById(id);
+  if(!el)return;
+  const hh=document.querySelector('header')?.offsetHeight||52;
+  window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-hh-12,behavior:'smooth'});
+}
+
+/* 診断データ */
+const QD={
+  ja:{
+    neck:{
+      title:'首すわり前の抱っこに、少し緊張しているタイプ',
+      body:`生まれたばかりの赤ちゃんはとても小さく、首もまだ安定していません。
+はじめて抱く時に「ちゃんと支えられるかな」と感じるのは自然なことです。
+
+Crepebebeは、首すわり前の赤ちゃんをやさしく包み、
+ママ・パパの抱っこ時間に寄り添う出産準備アイテム。
+小さな赤ちゃんを抱く時の緊張を、少しやわらげたい方におすすめです。`,
+      cta:'首すわり前の抱っこ準備を見る',target:'features',img:'img-closeup.webp',alt:'Crepebebeの素材感'
+    },
+    family:{
+      title:'家族みんなの抱っこ時間を、少し安心にしたいタイプ',
+      body:`赤ちゃんが生まれると、パパや祖父母も「抱っこしたい」と思う場面が増えていきます。
+でも、首すわり前の小さな赤ちゃんを抱く姿を見ると、ママ自身が少し緊張することも。
+
+Crepebebeは、新手ママ・パパだけでなく、
+家族みんなの抱っこ時間にも寄り添うアイテムです。`,
+      cta:'家族の抱っこシーンを見る',target:'scenes',img:'img-papa.webp',alt:'パパの初抱っこ'
+    },
+    bag:{
+      title:'待產包に入れるものを、ちゃんと選びたいタイプ',
+      body:`出産準備では、哺乳瓶、ガーゼ、肌着など、準備するものがたくさんあります。
+「本当に産院に持っていくべきもの」は迷いやすいポイントです。
+
+Crepebebeは、家に帰ってからだけでなく、
+産院での初抱っこや退院時にも使えるアイテム。
+「出産後に慌てて買うより、先に準備しておきたい」方に向いています。`,
+      cta:'待產包に入れたい理由を見る',target:'scenes',img:'img-bag.png',alt:'待產包の準備'
+    },
+    photo:{
+      title:'はじめての抱っこ写真も、かわいく残したいタイプ',
+      body:`赤ちゃんが生まれた日、初めて抱っこした瞬間。
+その一枚一枚は、後から何度も見返したくなる大切な記録です。
+
+Crepebebeは、抱っこ時間に寄り添うだけでなく、
+やさしいデザインで、はじめての抱っこ写真にも自然になじみます。`,
+      cta:'抱っこ写真のイメージを見る',target:'scenes',img:'img-family.jpg',alt:'家族の抱っこ写真'
+    }
+  },
+  zh:{
+    neck:{
+      title:'對抱起頸部尚未穩定的寶寶感到緊張的你',
+      body:`剛出生的寶寶非常嬌小，頸部也還不穩定。
+第一次抱起時，心裡想著「我能好好支撐嗎？」是非常自然的感受。
+
+Crepebebe 輕柔包覆頸部尚未穩定的寶寶，
+陪伴媽媽、爸爸的抱抱時光。
+推薦給想稍微緩解抱起小寶寶緊張感的你。`,
+      cta:'了解頸部穩定前的抱抱準備',target:'features',img:'img-closeup.webp',alt:'Crepebebe的質感特寫'
+    },
+    family:{
+      title:'希望全家人都能從容抱抱寶寶的你',
+      body:`寶寶出生後，爸爸和爺爺奶奶也會越來越多「我也想抱抱」的時刻。
+但看著他們抱起頸部尚未穩定的小寶寶，媽媽自己也難免會緊張。
+
+Crepebebe 不只陪伴新手爸媽，
+也能融入全家人的抱抱時光。`,
+      cta:'查看全家人的抱抱場景',target:'scenes',img:'img-papa.webp',alt:'爸爸第一次抱起寶寶'
+    },
+    bag:{
+      title:'想認真挑選待產包內容物的你',
+      body:`生產準備時，奶瓶、紗布巾、肌衣……需要準備的東西很多。
+「真的需要帶去醫院的東西」特別讓人猶豫。
+
+Crepebebe 不只是回家後才用，
+從醫院的初次抱抱、出院，到月子中心的家人探視，
+能陪伴從出生那天起的每一次抱抱。`,
+      cta:'了解放入待產包的理由',target:'scenes',img:'img-bag.png',alt:'待產包準備中'
+    },
+    photo:{
+      title:'也想留下第一次抱抱可愛照片的你',
+      body:`寶寶出生那天，第一次抱起的瞬間。
+每一張，都是日後會一遍遍回味的珍貴記錄。
+
+Crepebebe 不只陪伴抱抱時光，
+溫柔的設計也能自然融入第一次抱抱的照片之中。`,
+      cta:'查看抱抱照片的樣子',target:'scenes',img:'img-family.jpg',alt:'全家人和寶寶入鏡的照片'
+    }
+  }
+};
+
+let rTarget=null;
+function renderQ(type){
+  const d=QD[lang][type];if(!d)return;
+  rTarget=d.target;
+  document.getElementById('r-title').textContent=d.title;
+  document.getElementById('r-body').textContent=d.body;
+  document.getElementById('r-cta').textContent=d.cta;
+  const img=document.getElementById('r-img');
+  const ph=img.parentElement.querySelector('.ph');
+  img.src=d.img;img.alt=d.alt;
+  img.style.display='block';
+  if(ph)ph.style.display='none';
+}
+
+function pickQ(btn){
+  document.querySelectorAll('.q-btn').forEach(b=>{b.classList.remove('on');b.setAttribute('aria-pressed','false')});
+  btn.classList.add('on');btn.setAttribute('aria-pressed','true');
+  renderQ(btn.dataset.t);
+  document.getElementById('r-ph').style.display='none';
+  document.getElementById('r-card').style.display='grid';
+  const res=document.getElementById('q-result');
+  res.classList.remove('show');void res.offsetWidth;res.classList.add('show');
+  setTimeout(()=>res.scrollIntoView({behavior:'smooth',block:'nearest'}),120);
+}
+function doCTA(){if(rTarget)scrollTo(rTarget)}
+</script>
+</body>
+</html>
